@@ -1,0 +1,26 @@
+<div class="container  vertical-center">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Avaliador de segurança de senha</h3>
+			</div>
+			<div class="panel-body form-horizontal">
+				<div class="form-group">
+					<div class="information">
+						<input [(ngModel)]="password" (keyup)="checkPasswordMetter()" type="password" class="form-control" placeholder="Senha">
+
+						<div class="row">
+							<div class="col-md-9">
+								<span  class="label label-default">{{passwordScore}}%</span>
+								<span *ngIf='passwordMeter == 1' class="label label-danger">Muito fraco</span>
+								<span *ngIf='passwordMeter == 2' class="label label-warning">Fraco</span>
+								<span *ngIf='passwordMeter == 3' class="label label-info">Bom</span>
+								<span *ngIf='passwordMeter == 4' class="label label-primary">Forte</span>
+								<span *ngIf='passwordMeter == 5' class="label label-success">Muito forte</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
