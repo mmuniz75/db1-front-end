@@ -26,26 +26,33 @@ export class AppComponent {
   constructor(private _appService: AppService) {
    }
 
-  checkPasswordMetter():void{
-    this.passwordScore = this._appService.checkPaswordMeter(this.password);
-        
-    switch (true){
-      case (this.passwordScore<=20):
-       this.passwordMeter = PassWordMeter.VERY_WEEK;
-       break;
-      case (this.passwordScore>20 && this.passwordScore<=40):
-       this.passwordMeter = PassWordMeter.WEEK;
-       break;
-      case (this.passwordScore>40 && this.passwordScore<=60):
-       this.passwordMeter = PassWordMeter.GOOD;
-       break;
-      case (this.passwordScore>60 && this.passwordScore<=80):
-       this.passwordMeter = PassWordMeter.STRONG;
-       break;
-      case (this.passwordScore > 80):
-       this.passwordMeter = PassWordMeter.VERY_STRONG;
-       break;   
-    }
+  public checkPasswordMetter():void{
+    if(this.password.length) 
+      this._appService.checkPaswordMeter(this.password)
+                      .subscribe (passwordScore => this.setMeter(passwordScore));  
   }
+
+  private setMeter(score:Number):void{
+    var passwordMeter = "";
+    switch (true){
+      case (score<=20):
+        this.passwordMeter = PassWordMeter.VERY_WEEK;
+      break;
+      case (score>20 && score<=40):
+      this.passwordMeter = PassWordMeter.WEEK;
+      break;
+      case (score>40 && score<=60):
+      this.passwordMeter = PassWordMeter.GOOD;
+      break;
+      case (score>60 && score<=80):
+      this.passwordMeter = PassWordMeter.STRONG;
+      break;
+      case (score > 80):
+      this.passwordMeter = PassWordMeter.VERY_STRONG;
+      break;   
+    }
+    
+  } 
+
 }
 
