@@ -29,10 +29,15 @@ export class AppComponent {
   public checkPasswordMetter():void{
     if(this.password.length) 
       this._appService.checkPaswordMeter(this.password)
-                      .subscribe (passwordScore => this.setMeter(passwordScore));  
+                      .subscribe (passwordScore => this.setMeter(passwordScore));
+    else {
+      this.passwordScore=0;
+      this.passwordMeter = null;                   
+    }  
   }
 
   private setMeter(score:Number):void{
+    this.passwordScore = score;
     var passwordMeter = "";
     switch (true){
       case (score<=20):
