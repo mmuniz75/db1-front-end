@@ -16,8 +16,13 @@ export class AppService {
 
     
   checkPaswordMeter(password:String) : Observable<any>{
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers ,method: "post"});
     
-     return this._http.get(this._serverkUrl + password)
+    let data = new URLSearchParams();
+    data.set('password',password.toString());
+    
+     return this._http.post(this._serverkUrl,data,options)
          .map((response: Response) => response.json())
         .catch(this.handleError);
   }
