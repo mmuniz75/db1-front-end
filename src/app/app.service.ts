@@ -5,10 +5,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../environments/environment';
+
 @Injectable()
 export class AppService {
 
-  private static SERVER = "localhost:8080";
+  private static SERVER = environment.SERVER_URL + ":" + environment.SERVER_PORT;
 
   private _serverkUrl = 'http://' + AppService.SERVER + '/checkPassword/';
     
